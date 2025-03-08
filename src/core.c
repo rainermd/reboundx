@@ -357,7 +357,7 @@ struct rebx_force* rebx_load_force(struct rebx_extras* const rebx, const char* n
         force->force_type = REBX_FORCE_VEL;
     }
     else if (strcmp(name, "outgas") == 0){
-    force->update_accelerations = outgas;
+    force->update_accelerations = rebx_outgas_forces;
     force->force_type = REBX_FORCE_POS;
     }
     else{
