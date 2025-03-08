@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "reboundx.h"
 
-static void rebx_calculate_outgas_forces(struct rebx_extras* const rebx, struct reb_simulation* const sim, double alpha, double n, double k, double m, double r0, const int source_index, struct reb_particle* const particles, const int N){
+static void rebx_calculate_outgas_forces(struct rebx_extras* const rebx, struct reb_simulation* const sim, double alpha, double n, double k, double m, double r0, double A01, double A02, double A03, const int source_index, struct reb_particle* const particles, const int N){
     const struct reb_particle source = particles[source_index];
     
     for (int i=0; i<N; i++){
@@ -28,6 +28,9 @@ static void rebx_calculate_outgas_forces(struct rebx_extras* const rebx, struct 
             A1[2]*A2[0] - A1[0]*A2[2],
             A1[0]*A2[1] - A1[1]*A2[0]
         };
+        A1[0] *= A01; A1[1] *= A01; A1[2] *= A01;
+        A2[0] *= A02; A2[1] *= A02; A2[2] *= A02;
+        A3[0] *= A03; A3[1] *= A03; A3[2] *= A03;
         
         // Scaling factor
         double scale = alpha * pow(R/r0, -m) * pow(1 + pow(R/r0, n), -k);
