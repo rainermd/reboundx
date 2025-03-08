@@ -148,9 +148,9 @@ void rebx_register_default_params(struct rebx_extras* rebx){
     rebx_register_param(rebx, "n", REBX_TYPE_DOUBLE);
     rebx_register_param(rebx, "m", REBX_TYPE_DOUBLE);
     rebx_register_param(rebx, "k", REBX_TYPE_DOUBLE);
-    rebx_register_param(rebx, "A01", REBX_TYPE_DOUBLE);
-    rebx_register_param(rebx, "A02", REBX_TYPE_DOUBLE);
-    rebx_register_param(rebx, "A03", REBX_TYPE_DOUBLE);
+    rebx_register_param(rebx, "a01", REBX_TYPE_DOUBLE);
+    rebx_register_param(rebx, "a02", REBX_TYPE_DOUBLE);
+    rebx_register_param(rebx, "a03", REBX_TYPE_DOUBLE);
     rebx_register_param(rebx, "r0", REBX_TYPE_DOUBLE);
 }
 
