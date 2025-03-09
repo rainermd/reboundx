@@ -82,8 +82,11 @@ void rebx_outgas_forces(struct reb_simulation* const sim, struct rebx_force* con
     double* k = rebx_get_param(rebx, outgas_forces->ap, "k");
     double* m = rebx_get_param(rebx, outgas_forces->ap, "m");
     double* r0 = rebx_get_param(rebx, outgas_forces->ap, "r0");
+    double* a01 = rebx_get_param(rebx, outgas_forces->ap, "a01");
+    double* a02 = rebx_get_param(rebx, outgas_forces->ap, "a02");
+    double* a03 = rebx_get_param(rebx, outgas_forces->ap, "a03");
     
-    if (!alpha || !n || !k || !m || !r0){
+    if (!alpha || !n || !k || !m || !r0 | !a01 | !a02 | !a03){
         reb_simulation_error(sim, "Missing parameters for outgas forces.\n");
         return;
     }
@@ -92,10 +95,10 @@ void rebx_outgas_forces(struct reb_simulation* const sim, struct rebx_force* con
     for (int i = 0; i < N; i++){
         if (rebx_get_param(rebx, particles[i].ap, "outgas_source") != NULL){
             source_found = 1;
-            rebx_calculate_outgas_forces(rebx, sim, *alpha, *n, *k, *m, *r0, i, particles, N);
+            rebx_calculate_outgas_forces(rebx, sim, *alpha, *n, *k, *m, *r0, *a01, *a02, *a03, i, particles, N);
         }
     }
     if (!source_found){
-        rebx_calculate_outgas_forces(rebx, sim, *alpha, *n, *k, *m, *r0, 0, particles, N); // default to index 0
+        rebx_calculate_outgas_forces(rebx, sim, *alpha, *n, *k, *m, *r0, *a01, *a02, *a03, 0, particles, N); // default to index 0
     }
 }
